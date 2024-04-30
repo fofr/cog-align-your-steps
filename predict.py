@@ -122,7 +122,7 @@ class Predictor(BasePredictor):
         ),
         sampler_name: str = Input(
             choices=SAMPLERS,
-            default="dpmpp_2m_sde_gpu",
+            default="euler",
         ),
         guidance_scale: float = Input(
             description="Scale for classifier-free guidance",
