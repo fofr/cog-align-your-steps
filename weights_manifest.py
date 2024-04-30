@@ -64,6 +64,16 @@ class WeightsManifest:
 
         return original_manifest
 
+    def non_commercial_weights(self):
+        return [
+            "proteus_v02.safetensors",
+            "copaxTimelessxlSDXL1_v8.safetensors",
+            "epicrealismXL_v10.safetensors",
+        ]
+
+    def is_non_commercial_only(self, weight_str):
+        return weight_str in self.non_commercial_weights()
+
     def _generate_weights_map(self, keys, dest):
         return {
             key: {
@@ -80,11 +90,6 @@ class WeightsManifest:
                 weights_map.update(
                     self._generate_weights_map(self.weights_manifest[key], key.lower())
                 )
-
-        print("Allowed weights:")
-        for weight in weights_map.keys():
-            print(weight)
-
         return weights_map
 
     def get_weights_by_type(self, weight_type):
